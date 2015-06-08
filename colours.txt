@@ -1,0 +1,6 @@
+Going Up - colors.white
+Going Down - colors.orange
+Going Right - colors.magenta
+Going Left - colors.yellow
+Going Forwards - colors.blue
+Going backwards - colors.lime
