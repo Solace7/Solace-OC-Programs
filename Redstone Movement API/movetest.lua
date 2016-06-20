@@ -17,4 +17,5 @@ local sides = require("sides")
 local rs = component.redstone --get primrary redstone component
 
 --move RIGHT
-API.move(east)
+rim.move(east)
+print("Moving to the right. east")

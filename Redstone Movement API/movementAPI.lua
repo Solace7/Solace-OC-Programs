@@ -1,4 +1,5 @@
---Movement API, attach bundled cable to Motor.
+--Movement rim, attach bundled cable to Motor.
+
 --[[
 By default Direction colors are as follows;
 UP is white
@@ -8,9 +9,10 @@ WEST(LEFT) is yellow
 NORTH(FORWARDS) is blue
 SOUTH(BACKWARDS) is lime
 ]]--
---Attach cable to CPU(Computer Case)
 
-local API = {}
+--Attach cable to CPU(Computer Case), or to Redstone I/O Block
+
+local rim = {}
 local move = {}
 
 --Declare required component libraries
@@ -24,7 +26,7 @@ local trigger = rs.setBundledOutput
 
 moveStatus = "STATIONARY"
 
-function API.move(direction)
+function rim.move(direction)
   if direction == west {
     trigger(sides.bottom,colors.yellow,255)
     os.sleep(2)
