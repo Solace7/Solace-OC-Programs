@@ -1,2 +1,2 @@
-# opencomputers-programs
-Programs in the repository have been written in LUA and make use of ProjectRed's Budndled and Insulated Cable
+# Solace OC Programs
+Programs in the repository have been written in LUA and are used in OpenComputers, a mod for Minecraft.
