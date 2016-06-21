@@ -1,7 +1,6 @@
 --Movement rim, attach bundled cable to Motor.
 
---[[
-By default Direction colors are as follows;
+--[[ By default Direction colors are as follows;
 UP is white
 DOWN is orange
 EAST(RIGHT) is magenta
@@ -21,51 +20,65 @@ local rs = component.redstone --get primrary redstone component
 local trigger = rs.setBundledOutput
 --Trigger is for movement
 
-move.Status = "STATIONARY"
+move.State = {
+  MOVING = 1,
+  STATIONARY = 0,
+  ERROR = -1,
+}
+
 local rim = nil
 local move = nil
+
+--new function for movement State. May move to separate file
+function move.State.toString(state)
+  if state == move.State.MOVING then print("MOVING")
+  elseif state == move.State.STATIONARY then print("STATIONARY")
+  elseif state == move.State.ERROR then print ("ERROR")
+  else print("UNKNOWN")
+end
+
 
 --will change to (direction, duration)
 function rim.move(direction)
   if direction == west {
     trigger(sides.bottom,colors.yellow,255)
-    move.Status = "MOVING"
-    print(move.Status .. direction)
+    ----move.State = "MOVING"
+    ----print(move.State .. direction)
     os.sleep(2)
     trigger(sides.bottom,colors.yellow,0)
   }
   elseif direction == east {
   	trigger(sides.bottom,colors.magenta,255)
-    move.Status = "MOVING"
-    print(move.Status .. direction)
+    --move.State = "MOVING"
+    ----print(move.State .. direction)
   	os.sleep(2)
   	trigger(sides.bottom,colors.magenta,0)
   }
   elseif direction == south {
   	trigger(sides.bottom,colors.lime,255)
-    move.Status = "MOVING"
-    print(move.Status .. direction)
+    --move.State = "MOVING"
+    --print(move.State .. direction)
   	os.sleep(2)
   	trigger(sides.bottom,colors.lime,0)
   }
   elseif direction == north {
   	trigger(sides.bottom,colors.blue,255)
-    move.Status = "MOVING"
-    print(move.Status .. direction)
+    --move.State = "MOVING"
+    --print(move.State .. direction)
   	os.sleep(2)
   	trigger(sides.bottom,colors.blue,0)
   }
   elseif direction == up {
   	trigger(sides.bottom,colors.white,255)
-    move.Status = "MOVING"
-    print(move.Status .. direction)
+    --move.State = "MOVING"
+    --print(move.State .. direction)
   	os.sleep(2)
   	trigger(sides.bottom,colors.white,0)
   }
   elseif direction == down {
   	trigger(sides.bottom,colors.orange,255)
-    move.Status = "MOVING"
-    print(move.Status .. direction)
+    --move.State = "MOVING"
+    --print(move.State .. direction)
   	os.sleep(2)
   	trigger(sides.bottom,colors.orange,0)
   }
