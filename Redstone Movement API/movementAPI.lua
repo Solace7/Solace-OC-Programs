@@ -39,46 +39,45 @@ end
 
 
 function rim.move(direction,duration)
-  if direction == west {
+  if direction == west then
     trigger(sides.bottom,colors.yellow,255)
     ----move.State = "MOVING"
     ----print(move.State .. direction)
     os.sleep(duration)
     trigger(sides.bottom,colors.yellow,0)
-  }
-  elseif direction == east {
+
+  elseif direction == east then
   	trigger(sides.bottom,colors.magenta,255)
     --move.State = "MOVING"
     ----print(move.State .. direction)
   	os.sleep(duration)
   	trigger(sides.bottom,colors.magenta,0)
-  }
-  elseif direction == south {
+
+  elseif direction == south then
   	trigger(sides.bottom,colors.lime,255)
     --move.State = "MOVING"
     --print(move.State .. direction)
   	os.sleep(duration)
   	trigger(sides.bottom,colors.lime,0)
-  }
-  elseif direction == north {
+
+  elseif direction == north then
   	trigger(sides.bottom,colors.blue,255)
     --move.State = "MOVING"
     --print(move.State .. direction)
   	os.sleep(duration)
   	trigger(sides.bottom,colors.blue,0)
-  }
-  elseif direction == up {
+
+  elseif direction == up then
   	trigger(sides.bottom,colors.white,255)
     --move.State = "MOVING"
     --print(move.State .. direction)
   	os.sleep(duration)
   	trigger(sides.bottom,colors.white,0)
-  }
-  elseif direction == down {
+
+  elseif direction == down then
   	trigger(sides.bottom,colors.orange,255)
     --move.State = "MOVING"
     --print(move.State .. direction)
   	os.sleep(duration)
   	trigger(sides.bottom,colors.orange,0)
-  }
 end
