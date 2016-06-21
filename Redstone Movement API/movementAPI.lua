@@ -80,4 +80,7 @@ function rim.move(direction,duration)
     --print(move.State .. direction)
   	os.sleep(duration)
   	trigger(sides.bottom,colors.orange,0)
+  	
+	else
+	  print("Input a direction")
 end
