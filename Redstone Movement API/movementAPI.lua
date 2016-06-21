@@ -1,4 +1,4 @@
---Movement rim, attach bundled cable to Motor.
+--Colored Redstone Controls | For use with RemainInMotion
 
 --[[ By default Direction colors are as follows;
 UP is white
@@ -38,48 +38,47 @@ function move.State.toString(state)
 end
 
 
---will change to (direction, duration)
-function rim.move(direction)
+function rim.move(direction,duration)
   if direction == west {
     trigger(sides.bottom,colors.yellow,255)
     ----move.State = "MOVING"
     ----print(move.State .. direction)
-    os.sleep(2)
+    os.sleep(duration)
     trigger(sides.bottom,colors.yellow,0)
   }
   elseif direction == east {
   	trigger(sides.bottom,colors.magenta,255)
     --move.State = "MOVING"
     ----print(move.State .. direction)
-  	os.sleep(2)
+  	os.sleep(duration)
   	trigger(sides.bottom,colors.magenta,0)
   }
   elseif direction == south {
   	trigger(sides.bottom,colors.lime,255)
     --move.State = "MOVING"
     --print(move.State .. direction)
-  	os.sleep(2)
+  	os.sleep(duration)
   	trigger(sides.bottom,colors.lime,0)
   }
   elseif direction == north {
   	trigger(sides.bottom,colors.blue,255)
     --move.State = "MOVING"
     --print(move.State .. direction)
-  	os.sleep(2)
+  	os.sleep(duration)
   	trigger(sides.bottom,colors.blue,0)
   }
   elseif direction == up {
   	trigger(sides.bottom,colors.white,255)
     --move.State = "MOVING"
     --print(move.State .. direction)
-  	os.sleep(2)
+  	os.sleep(duration)
   	trigger(sides.bottom,colors.white,0)
   }
   elseif direction == down {
   	trigger(sides.bottom,colors.orange,255)
     --move.State = "MOVING"
     --print(move.State .. direction)
-  	os.sleep(2)
+  	os.sleep(duration)
   	trigger(sides.bottom,colors.orange,0)
   }
 end
