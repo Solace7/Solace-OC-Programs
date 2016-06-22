@@ -20,23 +20,22 @@ local rs = component.redstone --get primrary redstone component
 local trigger = rs.setBundledOutput
 --Trigger is for movement
 
-move.State = {
+move.state = {
   MOVING = 1,
   STATIONARY = 0,
   ERROR = -1,
 }
 
-local rim = nil
-local move = nil
+local rim = {}
 
 --new function for movement State. May move to separate file
-function move.State.toString(state)
+function move.state.toString(state)
   if state == move.State.MOVING then print("MOVING")
   elseif state == move.State.STATIONARY then print("STATIONARY")
   elseif state == move.State.ERROR then print ("ERROR")
   else print("UNKNOWN")
 end
-
+end
 
 function rim.move(direction,duration)
   if direction == west then
@@ -83,4 +82,7 @@ function rim.move(direction,duration)
   	
 	else
 	  print("Input a direction")
+	end
 end
+
+return rim
