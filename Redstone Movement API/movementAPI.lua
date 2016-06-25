@@ -1,13 +1,4 @@
---Colored Redstone Controls | For use with RemainInMotion
-
---[[ By default Direction colors are as follows;
-UP is white
-DOWN is orange
-EAST(RIGHT) is magenta
-WEST(LEFT) is yellow
-NORTH(FORWARDS) is blue
-SOUTH(BACKWARDS) is lime
-]]--
+--Colored Redstone Controls | For use with Frame mods that can be controled via redstone
 
 --Attach cable to CPU(Computer Case), or to Redstone I/O Block
 
@@ -16,80 +7,80 @@ SOUTH(BACKWARDS) is lime
 local component = require("component")
 local colors = require("colors")
 local sides = require("sides")
-local rs = component.redstone --get primrary redstone component
 local trigger = rs.setBundledOutput
 --Trigger is for movement
 
 moveState = {
-  MOVING = 1,
-  STATIONARY = 0,
-  ERROR = -1,
+  MOVING = "MOVING",
+  STATIONARY = "STATIONARY",
+  ERROR = "ERROR",
 }
 
-local rim = {
-  cState = moveState.STATIONARY
+local frame = {
+  cState = nil
+  dState = moveState.STATIONARY
 }
 
---new function for movement state. May move to separate file
-function moveState.toString(state)
-  if state == moveState.MOVING then print("MOVING")
-    elseif state == moveState.STATIONARY then print("STATIONARY")
-    elseif state == moveState.ERROR then print ("ERROR")
-    else print("UNKNOWN")
+function frame.setState(state)
+  cState = moveState.state
+end
+
+function frame.getState()
+  print(cState)
+end
+
+function frame.move(color,duration)
+  if color == yellow then
+    trigger(sides.bottom,colors.yellow,255)
+    cState = moveState.MOVING
+    print(cState .. "..")
+    os.sleep(duration)
+    trigger(sides.bottom,colors.yellow,0)
+    cState = dState
+
+    elseif color == magenta then
+    trigger(sides.bottom,colors.magenta,255)
+    cState = moveState.MOVING
+    print(cState .. "..")
+    os.sleep(duration)
+    trigger(sides.bottom,colors.magenta,0)
+    cState = dState
+
+    elseif color == lime then
+    trigger(sides.bottom,colors.lime,255)
+    cState = moveState.MOVING
+    print(cState .. "..")
+    os.sleep(duration)
+    trigger(sides.bottom,colors.lime,0)
+    cState = dState
+
+    elseif color == blue then
+    trigger(sides.bottom,colors.blue,255)
+    cState = moveState.MOVING
+    print(cState .. "..")
+    os.sleep(duration)
+    trigger(sides.bottom,colors.blue,0)
+    cState = dState
+
+    elseif color == white then
+    trigger(sides.bottom,colors.white,255)
+    cState = moveState.MOVING
+    print(cState .. "..")
+    os.sleep(duration)
+    trigger(sides.bottom,colors.white,0)
+    cState = dState
+
+    elseif color == orange then
+    trigger(sides.bottom,colors.orange,255)
+    cState = moveState.MOVING
+    print(cState .. "..")
+    os.sleep(duration)
+    trigger(sides.bottom,colors.orange,0)
+    cState = dState
+
+   else
+    print("Input a color, and duration")
   end
 end
 
-function rim.move(direction,duration)
-  if direction == west then
-    trigger(sides.bottom,colors.yellow,255)
-    moveState = MOVING
-    print(moveState .. direction)
-    os.sleep(duration)
-    trigger(sides.bottom,colors.yellow,0)
-
-    elseif direction == east then
-  	trigger(sides.bottom,colors.magenta,255)
-    moveState = MOVING
-    print(moveState .. direction)
-  	os.sleep(duration)
-  	trigger(sides.bottom,colors.magenta,0)
-
-    elseif direction == south then
-  	trigger(sides.bottom,colors.lime,255)
-    moveState = MOVING
-    print(moveState .. direction)
-  	os.sleep(duration)
-  	trigger(sides.bottom,colors.lime,0)
-
-    elseif direction == north then
-  	trigger(sides.bottom,colors.blue,255)
-    moveState = MOVING
-    print(moveState .. direction)
-  	os.sleep(duration)
-  	trigger(sides.bottom,colors.blue,0)
-
-    elseif direction == up then
-  	trigger(sides.bottom,colors.white,255)
-    moveState = MOVING
-    print(moveState .. direction)
-  	os.sleep(duration)
-  	trigger(sides.bottom,colors.white,0)
-
-    elseif direction == down then
-  	trigger(sides.bottom,colors.orange,255)
-    moveState = MOVING
-    print(moveState .. direction)
-  	os.sleep(duration)
-  	trigger(sides.bottom,colors.orange,0)
-
-	 else
-	  print("Input a direction, and duration")
-	end
-end
-
-function rim.getState()
-    return cState
-end
-
---return moveState
-return rim
+return frame
