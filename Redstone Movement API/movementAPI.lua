@@ -20,69 +20,76 @@ local rs = component.redstone --get primrary redstone component
 local trigger = rs.setBundledOutput
 --Trigger is for movement
 
-move.state = {
+moveState = {
   MOVING = 1,
   STATIONARY = 0,
   ERROR = -1,
 }
 
-local rim = {}
+local rim = {
+  cState = moveState.STATIONARY
+}
 
 --new function for movement state. May move to separate file
-function move.state.toString(state)
-  if state == move.state.MOVING then print("MOVING")
-  elseif state == move.state.STATIONARY then print("STATIONARY")
-  elseif state == move.state.ERROR then print ("ERROR")
-  else print("UNKNOWN")
-end
+function moveState.toString(state)
+  if state == moveState.MOVING then print("MOVING")
+    elseif state == moveState.STATIONARY then print("STATIONARY")
+    elseif state == moveState.ERROR then print ("ERROR")
+    else print("UNKNOWN")
+  end
 end
 
 function rim.move(direction,duration)
   if direction == west then
     trigger(sides.bottom,colors.yellow,255)
-    move.state = MOVING
-    print(move.state .. direction)
+    moveState = MOVING
+    print(moveState .. direction)
     os.sleep(duration)
     trigger(sides.bottom,colors.yellow,0)
 
-  elseif direction == east then
+    elseif direction == east then
   	trigger(sides.bottom,colors.magenta,255)
-    move.state = MOVING
-    print(move.state .. direction)
+    moveState = MOVING
+    print(moveState .. direction)
   	os.sleep(duration)
   	trigger(sides.bottom,colors.magenta,0)
 
-  elseif direction == south then
+    elseif direction == south then
   	trigger(sides.bottom,colors.lime,255)
-    move.state = MOVING
-    print(move.state .. direction)
+    moveState = MOVING
+    print(moveState .. direction)
   	os.sleep(duration)
   	trigger(sides.bottom,colors.lime,0)
 
-  elseif direction == north then
+    elseif direction == north then
   	trigger(sides.bottom,colors.blue,255)
-    move.state = MOVING
-    print(move.state .. direction)
+    moveState = MOVING
+    print(moveState .. direction)
   	os.sleep(duration)
   	trigger(sides.bottom,colors.blue,0)
 
-  elseif direction == up then
+    elseif direction == up then
   	trigger(sides.bottom,colors.white,255)
-    move.state = MOVING
-    print(move.state .. direction)
+    moveState = MOVING
+    print(moveState .. direction)
   	os.sleep(duration)
   	trigger(sides.bottom,colors.white,0)
 
-  elseif direction == down then
+    elseif direction == down then
   	trigger(sides.bottom,colors.orange,255)
-    move.state = MOVING
-    print(move.state .. direction)
+    moveState = MOVING
+    print(moveState .. direction)
   	os.sleep(duration)
   	trigger(sides.bottom,colors.orange,0)
 
-	else
+	 else
 	  print("Input a direction, and duration")
 	end
 end
 
+function rim.getState()
+    return cState
+end
+
+--return moveState
 return rim
