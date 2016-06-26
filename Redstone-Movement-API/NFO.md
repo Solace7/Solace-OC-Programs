@@ -7,4 +7,4 @@ Supported Mods:
 * FunkyLocomotion
 
 Planned:
-Framez(Amadornes)
+* Framez(Amadornes)
