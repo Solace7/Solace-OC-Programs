@@ -1,13 +1,4 @@
---Colored Redstone Controls | For use with RemainInMotion
-
---[[ By default Direction colors are as follows;
-UP is white
-DOWN is orange
-EAST(RIGHT) is magenta
-WEST(LEFT) is yellow
-NORTH(FORWARDS) is blue
-SOUTH(BACKWARDS) is lime
-]]--
+--Colored Redstone Controls | For use with Frame mods that can be controled via redstone
 
 --Attach cable to CPU(Computer Case), or to Redstone I/O Block
 
@@ -16,73 +7,81 @@ SOUTH(BACKWARDS) is lime
 local component = require("component")
 local colors = require("colors")
 local sides = require("sides")
-local rs = component.redstone --get primrary redstone component
+local rs = component.redstone --get primary redstone component
 local trigger = rs.setBundledOutput
 --Trigger is for movement
 
-move.state = {
-  MOVING = 1,
-  STATIONARY = 0,
-  ERROR = -1,
+moveState = {
+  MOVING = "MOVING",
+  STATIONARY = "STATIONARY",
+  ERROR = "ERROR",
 }
 
-local rim = {}
+local frame = {
+  cState = nil
+  dState = moveState.STATIONARY
+}
 
---new function for movement State. May move to separate file
-function move.state.toString(state)
-  if state == move.State.MOVING then print("MOVING")
-  elseif state == move.State.STATIONARY then print("STATIONARY")
-  elseif state == move.State.ERROR then print ("ERROR")
-  else print("UNKNOWN")
-end
+function frame.setState(state)
+  cState = moveState.state
 end
 
-function rim.move(direction,duration)
-  if direction == west then
+function frame.getState()
+  print(cState)
+end
+
+function frame.move(color,duration)
+  if color == yellow then
     trigger(sides.bottom,colors.yellow,255)
-    ----move.State = "MOVING"
-    ----print(move.State .. direction)
+    cState = moveState.MOVING
+    print(cState .. "..")
     os.sleep(duration)
     trigger(sides.bottom,colors.yellow,0)
+    cState = dState
 
-  elseif direction == east then
-  	trigger(sides.bottom,colors.magenta,255)
-    --move.State = "MOVING"
-    ----print(move.State .. direction)
-  	os.sleep(duration)
-  	trigger(sides.bottom,colors.magenta,0)
+    elseif color == magenta then
+    trigger(sides.bottom,colors.magenta,255)
+    cState = moveState.MOVING
+    print(cState .. "..")
+    os.sleep(duration)
+    trigger(sides.bottom,colors.magenta,0)
+    cState = dState
 
-  elseif direction == south then
-  	trigger(sides.bottom,colors.lime,255)
-    --move.State = "MOVING"
-    --print(move.State .. direction)
-  	os.sleep(duration)
-  	trigger(sides.bottom,colors.lime,0)
+    elseif color == lime then
+    trigger(sides.bottom,colors.lime,255)
+    cState = moveState.MOVING
+    print(cState .. "..")
+    os.sleep(duration)
+    trigger(sides.bottom,colors.lime,0)
+    cState = dState
 
-  elseif direction == north then
-  	trigger(sides.bottom,colors.blue,255)
-    --move.State = "MOVING"
-    --print(move.State .. direction)
-  	os.sleep(duration)
-  	trigger(sides.bottom,colors.blue,0)
+    elseif color == blue then
+    trigger(sides.bottom,colors.blue,255)
+    cState = moveState.MOVING
+    print(cState .. "..")
+    os.sleep(duration)
+    trigger(sides.bottom,colors.blue,0)
+    cState = dState
 
-  elseif direction == up then
-  	trigger(sides.bottom,colors.white,255)
-    --move.State = "MOVING"
-    --print(move.State .. direction)
-  	os.sleep(duration)
-  	trigger(sides.bottom,colors.white,0)
+    elseif color == white then
+    trigger(sides.bottom,colors.white,255)
+    cState = moveState.MOVING
+    print(cState .. "..")
+    os.sleep(duration)
+    trigger(sides.bottom,colors.white,0)
+    cState = dState
 
-  elseif direction == down then
-  	trigger(sides.bottom,colors.orange,255)
-    --move.State = "MOVING"
-    --print(move.State .. direction)
-  	os.sleep(duration)
-  	trigger(sides.bottom,colors.orange,0)
-  	
-	else
-	  print("Input a direction")
-	end
+    elseif color == orange then
+    trigger(sides.bottom,colors.orange,255)
+    cState = moveState.MOVING
+    print(cState .. "..")
+    os.sleep(duration)
+    trigger(sides.bottom,colors.orange,0)
+    cState = dState
+
+   else
+    print("Input a color, and duration")
+  end
 end
 
-return rim
+return frame
