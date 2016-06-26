@@ -7,6 +7,7 @@
 local component = require("component")
 local colors = require("colors")
 local sides = require("sides")
+local rs = component.redstone --get primary redstone component
 local trigger = rs.setBundledOutput
 --Trigger is for movement
 
