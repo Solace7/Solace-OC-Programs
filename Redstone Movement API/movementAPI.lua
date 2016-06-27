@@ -34,7 +34,7 @@ function frame.move(color,duration,side)
   --if color == white or 0 then
     trigger(sides.side,colors.color,255)
     cState = moveState.MOVING
-    print(cState .. "..")
+    print(cState.."..")
     os.sleep(duration)
     trigger(sides.side,colors.color,0)
     cState = dState

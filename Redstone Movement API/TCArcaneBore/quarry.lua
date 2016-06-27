@@ -16,13 +16,14 @@ function quarry.Start(cycles,color)
       os.sleep(1)
       rs.setBundledOutput(sides.top,colors.orange,0)
       os.sleep(2)
+      print("Resetting")
       rs.setBundledOutput(sides.top,colors.white,255) --pull puller
       os.sleep(1)
       rs.setBundledOutput(sides.top,colors.white,0)
       os.sleep(2)
       print("Mining...")
       rs.setBundledOutput(sides.top,colors.lime,255)
-      os.sleep(5) --time it takes to mine down to bedrock
+      os.sleep(12) --time it takes to mine down to bedrock
       rs.setBundledOutput(sides.top,colors.lime,0)
       print("Done! Finished cycle:" .. i)
   end
