@@ -3,8 +3,9 @@ local button = require("buttonAPI")
 local colors = require("colors")
 local sides = require("sides")
 local term = require("term")
+local gpu = component.gpu
 
-local epdd = component.ep_dialing_device
+local epdd = component.ep_dialling_device
 local epc = component.ep_controller
 
 local page = 1
@@ -37,6 +38,7 @@ end
 function eportals.prevPage()
   if page-1 >= 1 then page = page-1 end
   eportals.fillTable()
+end
 
 function getClick()
   local _, _, x, y = event.pull(1,touch)
@@ -56,4 +58,6 @@ eportals.fillTable()
 
 while true do
   getClick()
+end
+
 return portals
