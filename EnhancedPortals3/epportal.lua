@@ -17,17 +17,23 @@ local portals = {} --holds portal info
 local eportals = {} --holds functions
 
 function eportals.getPortalNames() --grab names of all portals and add to portal table
-  for i = 0,1 do
+  local i = 0
+  while epdd.getStoredName(i) ~= nil do
     table.insert(portals,epdd.getStoredName(i))
+    i = i + 1
   end
 end
 
---[[ function eportals.dial()
-
-
-
+--[[ function eportals.dial(portalnum)
+  epdd.dialStored(portalnum)
 end
   ]]--
+
+function eportals.listNames()
+  for k,v in ipairs(portals) do
+    print(k,v)
+  end
+end
 
 
 function button.fillTable()
