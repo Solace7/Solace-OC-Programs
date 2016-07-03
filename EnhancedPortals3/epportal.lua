@@ -35,7 +35,7 @@ function eportals.listNames()
   end
 end
 
-
+--[[
 function button.fillTable()
   button.setTable("Next Page", nextPage, 21, 38, 1, 1)
   button.setTable("Prev Page", prevPage, 2, 19, 1, 1 )
@@ -73,5 +73,12 @@ button.label(15,3, "Page: "..tostring(page).." of "..tostring(pages))
 while true do
   getClick()
 end
+]]--  With Button API
+
+while true do
+  print("Where would you like to go?")
+  eportals.listNames()
+  desitantion = tonumber(io.read())
+  epdd.dial(desitantion)
 
 return portals

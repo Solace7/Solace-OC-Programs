@@ -23,7 +23,7 @@ function quarry.Start(cycles,color)
       os.sleep(2)
       print("Mining...")
       rs.setBundledOutput(sides.top,colors.lime,255)
-      os.sleep(12) --time it takes to mine down to bedrock
+      os.sleep(300) --time it takes to mine down to bedrock(or 63 blocks)
       rs.setBundledOutput(sides.top,colors.lime,0)
       print("Done! Finished cycle:" .. i)
   end
