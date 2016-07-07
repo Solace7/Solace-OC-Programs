@@ -24,10 +24,14 @@ function eportals.getPortalNames() --grab names of all portals and add to portal
   end
 end
 
---[[ function eportals.dial(portalnum)
-  epdd.dialStored(portalnum)
+--[[DireDial
+function eportals.dial(portalnum)
+  local entry,portal = string.match(portalnum, "(%d+):(%d+)")
+  button.toggleButton(names[tonumber(entry)][tonumber(name)])
+  print(names[tonumber(entry)][tonumber(portal)])
+  button.toggleButton(names[tonumber(entry)][tonumber(portal)])
 end
-  ]]--
+]]--
 
 function eportals.listNames()
   for k,v in ipairs(portals) do
@@ -35,11 +39,45 @@ function eportals.listNames()
   end
 end
 
---[[
+--buttons should be 8 pixels apart, starting at 5,32,2,4
+
+--[[ Buttons function
 function button.fillTable()
+  button.clear()
+  local totalrows = 0
+  local numPortals = 0
+  local col = 2
+  local row = 12
+  local countRow = 1
+  local currPortal = 0
+  local npp = 12 --names per page
+  for portal in pairs(portals) do
+    for k,v in pairs(portals) do
+      totalrows = totalrows + 1
+    end
+  end
+  pages = math.ceil(totalrows/npp)
+  print(totalros)
+  for portals in pairs(portals) do
+    currPortal = 0
+    for entry, name in pairs(portals) do
+      currName = currName + 1
+      if currName > npp*(page-1) and currName < npp*page+1 then
+        row = 4+(countRow)
+        names[portals] = string.sub(name, 0, 17)
+        button.setTable(string.sub(name,0,17), epportals.dial(), entry..":"..portals, col, col+17, row, row)
+        if col == 21 then
+          col = 2
+          countRow = countRow + 2
+        else
+          col = col+19
+        end
+      end
+    end
+  end
   button.setTable("Next Page", nextPage, 21, 38, 1, 1)
   button.setTable("Prev Page", prevPage, 2, 19, 1, 1 )
-  --button.setTable("Refresh", checkNames, 21, 38, 19, 19)
+  button.setTable("Refresh", checkNames, 21, 38, 19, 19)
   button.screen()
 end
 
@@ -69,16 +107,17 @@ gpu.setResolution(80,25)
 button.clear()
 button.fillTable()
 button.label(15,3, "Page: "..tostring(page).." of "..tostring(pages))
+--]]
 
 while true do
   getClick()
 end
-]]--  With Button API
+
 
 while true do
   print("Where would you like to go?")
   eportals.listNames()
   desitantion = tonumber(io.read())
-  epdd.dial(desitantion)
-
+  epdd.dialStored(desitantion)
+end
 return portals
