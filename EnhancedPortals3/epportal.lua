@@ -19,7 +19,7 @@ local portals = {} --holds portal info
 local eportals = {} --holds functions
 
 
-function eportals.getPortals() --grab names of all portals and add to portal table
+function eportals.getPortals() --grab names of all portals
   portals = {}
   local i = 0
   while epdd.getStoredName(i) ~= nil do
