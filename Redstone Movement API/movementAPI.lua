@@ -18,7 +18,7 @@ moveState = {
 }
 
 local frame = {
-  cState = nil
+  cState = dState,
   dState = moveState.STATIONARY
 }
 
@@ -30,48 +30,16 @@ function frame.getState()
   print(cState)
 end
 
-function frame.move(color,duration)
-  if color == yellow then
-    trigger(sides.bottom,colors.yellow,255)
+function frame.move(color,duration,side)
+  --if color == white or 0 then
+    trigger(sides.side,colors.color,255)
     cState = moveState.MOVING
-    print(cState .. "..")
+    print(cState.."..")
     os.sleep(duration)
-    trigger(sides.bottom,colors.yellow,0)
+    trigger(sides.side,colors.color,0)
     cState = dState
-
-    elseif color == magenta then
-    trigger(sides.bottom,colors.magenta,255)
-    cState = moveState.MOVING
-    print(cState .. "..")
-    os.sleep(duration)
-    trigger(sides.bottom,colors.magenta,0)
-    cState = dState
-
-    elseif color == lime then
-    trigger(sides.bottom,colors.lime,255)
-    cState = moveState.MOVING
-    print(cState .. "..")
-    os.sleep(duration)
-    trigger(sides.bottom,colors.lime,0)
-    cState = dState
-
-    elseif color == blue then
-    trigger(sides.bottom,colors.blue,255)
-    cState = moveState.MOVING
-    print(cState .. "..")
-    os.sleep(duration)
-    trigger(sides.bottom,colors.blue,0)
-    cState = dState
-
-    elseif color == white then
-    trigger(sides.bottom,colors.white,255)
-    cState = moveState.MOVING
-    print(cState .. "..")
-    os.sleep(duration)
-    trigger(sides.bottom,colors.white,0)
-    cState = dState
-
-    elseif color == orange then
+  --[[
+  elseif color == orange or 1 then
     trigger(sides.bottom,colors.orange,255)
     cState = moveState.MOVING
     print(cState .. "..")
@@ -79,9 +47,53 @@ function frame.move(color,duration)
     trigger(sides.bottom,colors.orange,0)
     cState = dState
 
+  elseif color == magenta or 2 then
+    trigger(sides.)
+
+  elseif color == yellow or 4 then
+    trigger(sides.bottom,colors.yellow,255)
+    cState = moveState.MOVING
+    print(cState .. "..")
+    os.sleep(duration)
+    trigger(sides.bottom,colors.yellow,0)
+    cState = dState
+
+  elseif color == lime or 5 then
+    trigger(sides.bottom,colors.lime,255)
+    cState = moveState.MOVING
+    print(cState .. "..")
+    os.sleep(duration)
+    trigger(sides.bottom,colors.lime,0)
+    cState = dState
+
+  elseif color == purple or 10 then
+    trigger(sides.bottom,colors.purple,255)
+    cState = moveState.MOVING
+    print(cState .. "..")
+    os.sleep(duration)
+    trigger(sides.bottom,colors.purple,0)
+    cState = dState
+
+  elseif color == blue or 11 then
+    trigger(sides.bottom,colors.blue,255)
+    cState = moveState.MOVING
+    print(cState .. "..")
+    os.sleep(duration)
+    trigger(sides.bottom,colors.blue,0)
+    cState = dState
+
+  elseif color == green or 13 then
+    trigger(sides.bottom,colors.green,255)
+    cState = moveState.MOVING
+    print(cState .. "..")
+    os.sleep(duration)
+    trigger(sides.bottom,colors.green,0)
+    cState = dState
+
    else
-    print("Input a color, and duration")
+    print("Input a color(or the number of that color), and duration")
   end
+  ]]--
 end
 
 return frame
