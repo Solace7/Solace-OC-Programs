@@ -61,7 +61,7 @@ while true do
     if command == "refresh" then
       goto begin
     else
-    epdd.dialStored(command)
+    epdd.dialStored(command - 1)
   end
 end
 
