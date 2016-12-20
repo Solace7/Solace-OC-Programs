@@ -52,13 +52,18 @@ function eportals.screenReset()
 end
 
 while true do
+  ::begin::
   eportals.disconect()
   eportals.screenReset()
   eportals.getPortals()
   print("Where would you like to go?")
   eportals.listNames()
-  desitantion = tonumber(io.read()-1)
-  epdd.dialStored(desitantion)
+  command = io.read()
+    if command == "refresh" then
+      goto begin
+    else
+    epdd.dialStored(command - 1)
+  end
 end
 
 return portals
